@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps CI/CD Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        p {
+            color: #555;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #eafaf1;
+            border: 1px solid #2ecc71;
+            color: #27ae60;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CI/CD Pipeline Test</h1>
+        <p>This page is deployed automatically.</p>
+        <p>If you see this, your pipeline works.</p>
+
+        <div class="status">
+            Status: SUCCESS
+        </div>
+
+        <p id="time"></p>
+    </div>
+
+    <script>
+        const now = new Date();
+        document.getElementById("time").innerText =
+            "Deployed at: " + now.toLocaleString();
+    </script>
+</body>
+</html>
