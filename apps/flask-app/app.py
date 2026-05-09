@@ -1,5 +1,6 @@
-from flask import Flask
+import os
 import psycopg2
+from flask import Flask
 
 app = Flask(__name__)
 
@@ -7,14 +8,14 @@ app = Flask(__name__)
 def home():
     try:
         conn = psycopg2.connect(
-            host="flask-db",
-            database="flaskdb",
-            user="flaskuser",
-            password="flaskpass"
+            host=os.environ["DB_HOST"],
+            database=os.environ["DB_NAME"],
+            user=os.environ["DB_USER"],
+            password=os.environ["DB_PASS"]
         )
         cur = conn.cursor()
-        cur.execute("SELECT 'Hello from Flask + Postgres!'")
-        message = cur.fetchone()[0]
+        message = "Hello from Flask!"
+        cur.execute("SELECT %s", (message,))
         conn.close()
         return message
     except Exception as e:
