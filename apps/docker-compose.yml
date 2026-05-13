@@ -1,14 +1,13 @@
 services:
   web:
     build: ./flask-app
-#    ports:
-#      - "8080:5000"
+    ports:
+      - "5000:5000"
     environment:
-      - APP_SECRET=supersecret
       - DB_HOST=db
-      - DB_NAME=flaskdb
-      - DB_USER=flaskuser
-      - DB_PASS=flaskpass
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
     expose:
       - "5000"
     restart: unless-stopped
@@ -18,11 +17,11 @@ services:
   db:
     image: postgres:14
     environment:
-      - POSTGRES_USER=flaskuser
-      - POSTGRES_PASSWORD=flaskpass
-      - POSTGRES_DB=flaskdb
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
     volumes:
-      - dbdata:/var/lib/postresql/data
+      - dbdata:/var/lib/postgresql/data
     restart: unless-stopped
   
   nginx:
