@@ -6,17 +6,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy to VM via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd ~/homelab
-            git pull origin main
-            docker compose down
-            docker compose up -d --build
+      - name: Pull latest code
+        run: |
+          cd ~/homelab
+          git pull origin main
+
+      - name: Restart containers
+        run: |
+          cd ~/homelab
+          docker compose down
+          docker compose up -d --build
