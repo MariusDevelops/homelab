@@ -16,6 +16,6 @@ jobs:
 
       - name: Restart containers
         run: |
-          cd ~/homelab
+          cd ~/homelab/apps
           docker compose down
           docker compose up -d --build
