@@ -1,5 +1,3 @@
-TEST DEPLOYMENT
-
 # DevOps Homelab
 This repository is my DevOps & Cloud learning environment.
 
@@ -25,4 +23,5 @@ Build a homelab for hands-on practice with:
 ## Structure
 - virtualbox/   - VM configuration and setup
 - scripts/      - automation scripts (Bash, Python)
-- apps/         - applications and services
+- apps/         - containerized applications (Docker Compose services)
+- ci-cd/        - CI/CD pipelines (GitHub Actions, self-hosted runner)
