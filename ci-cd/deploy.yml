@@ -1,0 +1,21 @@
+name: Deploy Homelab
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull latest code
+        run: |
+          cd ~/homelab
+          git pull origin main
+
+      - name: Restart containers
+        run: |
+          cd ~/homelab/apps
+          docker compose down
+          docker compose up -d --build
